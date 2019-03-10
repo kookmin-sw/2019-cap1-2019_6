@@ -10,7 +10,7 @@
 
 - 수정후 팀페이지 확인하여 점검.
 
-**팀페이지 주소** -> https://github.com/kookmin-sw/2019-cap1-2019_6
+**팀페이지 주소** -> https://kookmin-sw.github.io/2019-cap1-2019_6.io/
 
 ## readme파일에 아래와 같은 내용들을 추가하세요.
 
