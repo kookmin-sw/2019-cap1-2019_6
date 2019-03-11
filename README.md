@@ -12,16 +12,52 @@
 
 팀을 소개하세요.
 팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
+#### 지도 교수 : 이 시 윤 
 
-#### 1) **박병훈**
+#### **박 병 훈**
 
-#### 2) **김상민**
+<!-- ![ahn](/img/Ahn.jpeg) -->
 
-#### 3) **안은영**
+'''markdown
+학번 : 
+Email : 
+'''
 
-#### 4) **서준교**
+#### **김 상 민 ( Sang-Min, Kim )**
 
-#### 5) **이옥걸**
+![kim](/img/Kim.jpeg)
+
+'''markdown
+학번 : 20132368
+Email : ksm372510@gmail.com
+'''
+
+#### **안 은 영**
+
+![ahn](/img/Ahn.jpeg)
+
+'''markdown
+학번 : 
+Email : 
+'''
+
+#### **서 준 교**
+
+<!-- ![ahn](/img/Ahn.jpeg) -->
+
+'''markdown
+학번 : 
+Email : 
+'''
+
+#### **이 옥 걸**
+
+![ahn](/img/Lee.jpeg)
+
+'''markdown
+학번 : 
+Email : 
+'''
 
 ### 4. 사용법
 
