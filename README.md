@@ -16,8 +16,6 @@
 
 #### **박 병 훈**
 
-<!-- ![ahn](/img/Ahn.jpeg=300x) -->
-
 ```markdown
 학번 : 
 Email : 
@@ -25,7 +23,7 @@ Email :
 
 #### **김 상 민 ( Sang-Min, Kim )**
 
-![kim](/img/Kim.jpeg =300x)
+<img src="/img/Kim.jpeg" alt="Kim" width="300"/>
 
 ```markdown
 학번 : 20132368
@@ -34,7 +32,7 @@ Email : ksm372510@gmail.com
 
 #### **안 은 영**
 
-![ahn](/img/Ahn.jpeg =300x)
+<img src="/img/Ahn.jpeg" alt="Ahn" width="300"/>
 
 ```markdown
 학번 : 
@@ -43,8 +41,6 @@ Email :
 
 #### **서 준 교**
 
-<!-- ![ahn](/img/Ahn.jpeg =300x) -->
-
 ```markdown
 학번 : 
 Email : 
@@ -52,7 +48,7 @@ Email :
 
 #### **이 옥 걸**
 
-![ahn](/img/Lee.jpeg =300x)
+<img src="/img/Lee.jpeg" alt="Lee" width="300"/>
 
 ```markdown
 학번 : 
