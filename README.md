@@ -16,48 +16,48 @@
 
 #### **박 병 훈**
 
-<!-- ![ahn](/img/Ahn.jpeg) -->
+<!-- ![ahn](/img/Ahn.jpeg){: width="300" height="300"} -->
 
-'''markdown
+```markdown
 학번 : 
 Email : 
-'''
+```
 
 #### **김 상 민 ( Sang-Min, Kim )**
 
-![kim](/img/Kim.jpeg)
+![kim](/img/Kim.jpeg){: width="300" height="300"}
 
-'''markdown
+```markdown
 학번 : 20132368
 Email : ksm372510@gmail.com
-'''
+```
 
 #### **안 은 영**
 
-![ahn](/img/Ahn.jpeg)
+![ahn](/img/Ahn.jpeg){: width="300" height="300"}
 
-'''markdown
+```markdown
 학번 : 
 Email : 
-'''
+```
 
 #### **서 준 교**
 
-<!-- ![ahn](/img/Ahn.jpeg) -->
+<!-- ![ahn](/img/Ahn.jpeg){: width="300" height="300"} -->
 
-'''markdown
+```markdown
 학번 : 
 Email : 
-'''
+```
 
 #### **이 옥 걸**
 
-![ahn](/img/Lee.jpeg)
+![ahn](/img/Lee.jpeg){: width="300" height="300"}
 
-'''markdown
+```markdown
 학번 : 
 Email : 
-'''
+```
 
 ### 4. 사용법
 
