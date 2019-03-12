@@ -1,4 +1,4 @@
-팀 소개 페이지 : https://kookmin-sw.github.io/2019-cap1-2019_6.io/index
+팀 소개 페이지 : https://kookmin-sw.github.io/2019-cap1-6/index
 
 ### 1. 프로잭트 소개
 
