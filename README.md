@@ -1,4 +1,4 @@
-팀 소개 페이지 : https://kookmin-sw.github.io/2019-cap1-2019-6/
+팀 소개 페이지 : https://kookmin-sw.github.io/2019-cap1-2019_6/
 
 ## ViewToPia - Be Eyes
 
