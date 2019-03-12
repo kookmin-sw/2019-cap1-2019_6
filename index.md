@@ -27,7 +27,7 @@ Email :
 
 #### **김 상 민 ( Sang-Min, Kim )**
 
-<img src="/img/Kim.jpeg" alt="Kim" width="300" height="300"/>
+<img src="/img/Kim.jpeg" alt="Kim" width="300" height="400" style="border-radius: 50%"/>
 
 ```markdown
 학번 : 20132368
@@ -37,7 +37,7 @@ Email : ksm372510@gmail.com
 
 #### **안 은 영**
 
-<img src="/img/Ahn.jpeg" alt="Ahn" width="300" height="300"/>
+<img src="/img/Ahn.jpeg" alt="Ahn" width="300" height="400" style="border-radius: 50%"/>
 
 ```markdown
 학번 : 20143075
@@ -55,7 +55,7 @@ Email :
 
 #### **이 옥 걸**
 
-<img src="/img/Lee.jpeg" alt="Lee" width="300" height="300"/>
+<img src="/img/Lee.jpeg" alt="Lee" width="300" height="400" style="border-radius: 50%"/>
 
 ```markdown
 학번 : 
