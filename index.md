@@ -1,6 +1,10 @@
+## ViewToPia - Be Eyes
+
+<img src="/img/logo.png" alt="logo" width="300"/>
+
 ### 1. 프로잭트 소개
 
-**시각장애인**을 위한 **머신러닝** 기반 스마트 글래스  
+**시각장애인**을 위한 **딥러닝** 기반 스마트 글래스  
 
 ### 2. 소개 영상
 
@@ -9,8 +13,55 @@
 ### 3. 팀 소개
 
 팀을 소개하세요.
-
 팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
+
+#### 지도 교수 : 이 시 윤 교수님
+
+#### **박 병 훈**
+
+```markdown
+학번 : 20143062
+역할 : 프로젝트 팀장 및 
+Email : 
+```
+
+#### **김 상 민 ( Sang-Min, Kim )**
+
+<img src="/img/Kim.jpeg" alt="Kim" width="300" height="300"/>
+
+```markdown
+학번 : 20132368
+역할 : 
+Email : ksm372510@gmail.com
+```
+
+#### **안 은 영**
+
+<img src="/img/Ahn.jpeg" alt="Ahn" width="300" height="300"/>
+
+```markdown
+학번 : 20143075
+역할 :
+Email : 
+```
+
+#### **서 준 교**
+
+```markdown
+학번 : 20143068
+역할 :
+Email : 
+```
+
+#### **이 옥 걸**
+
+<img src="/img/Lee.jpeg" alt="Lee" width="300" height="300"/>
+
+```markdown
+학번 : 
+역할 :
+Email : 
+```
 
 ### 4. 사용법
 
