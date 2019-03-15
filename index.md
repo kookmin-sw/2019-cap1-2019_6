@@ -9,7 +9,7 @@
 
 ### 2. 소개 영상
 
-<iframe width="806" height="453" src="https://www.youtube.com/embed/kQOd4qONANw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+[![video](./img/intro.png)](https://www.youtube.com/watch?v=kQOd4qONANw&t=3s)
 
 ### 3. 팀 소개
 
