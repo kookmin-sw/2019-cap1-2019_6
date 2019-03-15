@@ -1,10 +1,10 @@
-팀 소개 페이지 : https://kookmin-sw.github.io/2019-cap1-2019_6/
+﻿팀 소개 페이지 : https://kookmin-sw.github.io/2019-cap1-2019_6/
 
-## 국민대학교 캡스톤 디자인 6조 Team ViewTopia
+## 국민대학교 캡스톤 디자인 6조 ViewTopia
 
 <img src="./img/teamlogo.png" alt="teamlogo" width="300" height="100" />
 
-## Be Eyes
+## 프로젝트명 : Be Eyes
 
 <img src="./img/logo.png" alt="logo" width="300" height="100" />
 
