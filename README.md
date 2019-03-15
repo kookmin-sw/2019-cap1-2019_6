@@ -1,6 +1,6 @@
 팀 소개 페이지 : https://kookmin-sw.github.io/2019-cap1-2019_6/
 
-## ViewToPia - Be Eyes
+## 국민대학교 캡스톤 디자인 6조 Team ViewTopia - Be Eyes
 
 <img src="./img/logo.png" alt="logo" width="300"/>
 
@@ -35,7 +35,7 @@
 
 #### 지도 교수 : 이 시 윤 교수님
 
-#### **박 병 훈**
+#### 팀장 : **박 병 훈**
 
 <img src="./img/Park.jpeg" alt="Kim" width="300" height="400" />
 
@@ -45,7 +45,7 @@
 Email : byunghoonpark1005@gmail.com
 ```
 
-#### **김 상 민 ( Sang-Min, Kim )**
+#### 팀원 : **김 상 민 ( Sang-Min, Kim )**
 
 <img src="./img/Kim.jpeg" alt="Kim" width="300" height="400" />
 
@@ -55,7 +55,7 @@ Email : byunghoonpark1005@gmail.com
 Email : ksm372510@gmail.com
 ```
 
-#### **안 은 영**
+#### 팀원 : **안 은 영**
 
 <img src="./img/Ahn.jpeg" alt="Ahn" width="300" height="400"/>
 
@@ -65,7 +65,7 @@ Email : ksm372510@gmail.com
 Email : any218@kookmin.ac.kr
 ```
 
-#### **서 준 교**
+#### 팀원 : **서 준 교**
 
 <img src="./img/Seo.jpeg" alt="Ahn" width="300" height="400"/>
 
@@ -75,7 +75,7 @@ Email : any218@kookmin.ac.kr
 Email : jkseo50@naver.com
 ```
 
-#### **이 옥 걸**
+#### 팀원 : **이 옥 걸**
 
 <img src="./img/Lee.jpeg" alt="Lee" width="300" height="400"/>
 
@@ -90,11 +90,13 @@ Email : li994885943@gmail.com
 ### 4. 사용법
 
 * 제작한 하드웨어 디바이스를 장착하고 카메라가 객체를 인식하도록 장애물에 접근한다.
-* 글자를 읽고 싶다면 글자가 있는 곳을 특정 모션을 취한다.
+
+* 글자를 읽고 싶다면 글자가 있는 곳에 특정 모션을 취한다.
 
 ***
 
 ### 5. 기타
 
 > 개발 일정
+
 [![plan](./img/Team-Project-Plan.png)](https://infogram.com/capstone_design_2019_6-1h0r6rwmlzg34ek?live)
