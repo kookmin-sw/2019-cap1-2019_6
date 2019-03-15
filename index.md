@@ -17,7 +17,7 @@
 
 #### **박 병 훈**
 
-<img src="/img/Park.jpeg" alt="Kim" width="300" height="400" />
+<img src="./img/Park.jpeg" alt="Kim" width="300" height="400" />
 
 ```markdown
 학번 : 20143062
@@ -27,7 +27,7 @@ Email : byunghoonpark1005@gmail.com
 
 #### **김 상 민 ( Sang-Min, Kim )**
 
-<img src="/img/Kim.jpeg" alt="Kim" width="300" height="400" />
+<img src="./img/Kim.jpeg" alt="Kim" width="300" height="400" />
 
 ```markdown
 학번 : 20132368
@@ -37,7 +37,7 @@ Email : ksm372510@gmail.com
 
 #### **안 은 영**
 
-<img src="/img/Ahn.jpeg" alt="Ahn" width="300" height="400"/>
+<img src="./img/Ahn.jpeg" alt="Ahn" width="300" height="400"/>
 
 ```markdown
 학번 : 20143075
@@ -47,7 +47,7 @@ Email : any218@kookmin.ac.kr
 
 #### **서 준 교**
 
-<img src="/img/Seo.jpeg" alt="Ahn" width="300" height="400"/>
+<img src="./img/Seo.jpeg" alt="Ahn" width="300" height="400"/>
 
 ```markdown
 학번 : 20143068
@@ -57,7 +57,7 @@ Email : jkseo50@naver.com
 
 #### **이 옥 걸**
 
-<img src="/img/Lee.jpeg" alt="Lee" width="300" height="400" style="border-radius: 50%"/>
+<img src="./img/Lee.jpeg" alt="Lee" width="300" height="400" style="border-radius: 50%"/>
 
 ```markdown
 학번 : 20163142
