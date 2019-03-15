@@ -1,8 +1,12 @@
 팀 소개 페이지 : https://kookmin-sw.github.io/2019-cap1-2019_6/
 
-## 국민대학교 캡스톤 디자인 6조 Team ViewTopia - Be Eyes
+## 국민대학교 캡스톤 디자인 6조 Team ViewTopia
 
-<img src="./img/logo.png" alt="logo" width="300"/>
+<img src="./img/teamlogo.png" alt="teamlogo" width="300" height="100" />
+
+## Be Eyes
+
+<img src="./img/logo.png" alt="logo" width="300" height="100" />
 
 ***
 
@@ -37,7 +41,7 @@
 
 #### 팀장 : **박 병 훈**
 
-<img src="./img/Park.jpeg" alt="Kim" width="300" height="400" />
+<img src="./img/Park.png" alt="Kim" width="300" height="400" />
 
 ```markdown
 학번 : 20143062
@@ -89,7 +93,9 @@ Email : li994885943@gmail.com
 
 ### 4. 사용법
 
-* 제작한 하드웨어 디바이스를 장착하고 카메라가 객체를 인식하도록 장애물에 접근한다.
+* 제작한 하드웨어 디바이스인 스마트 글라스를 장착한다.
+
+* 카메라가 객체를 인식하도록 장애물에 접근한다.
 
 * 글자를 읽고 싶다면 글자가 있는 곳에 특정 모션을 취한다.
 
@@ -97,6 +103,6 @@ Email : li994885943@gmail.com
 
 ### 5. 기타
 
-> 개발 일정
+> 개발 일정 (Made by Infogram)
 
 [![plan](./img/Team-Project-Plan.png)](https://infogram.com/capstone_design_2019_6-1h0r6rwmlzg34ek?live)
