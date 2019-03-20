@@ -8,7 +8,7 @@
 
 ***
 
-### 1. 프로잭트 소개
+### 1. 프로젝트 소개
 
 **시각장애인**을 위한 **딥러닝** 기반 스마트 글래스  
 
@@ -35,9 +35,9 @@
 
 ### 3. 팀 소개
 
-#### 지도 교수 : 이 시 윤 교수님
+#### 지도 교수 : 이 시 윤 ( Sheayun Lee )
 
-#### 팀장 : **박 병 훈**
+#### 팀장 : **박 병 훈 ( Byunghoon Park )**
 
 <img src="./img/Park.png" alt="Kim" width="300" height="400" />
 
@@ -47,7 +47,7 @@
 Email : byunghoonpark1005@gmail.com
 ```
 
-#### 팀원 : **김 상 민 ( Sang-Min, Kim )**
+#### 팀원 : **김 상 민 ( Sangmin Kim )**
 
 <img src="./img/Kim.jpeg" alt="Kim" width="300" height="400" />
 
@@ -57,7 +57,7 @@ Email : byunghoonpark1005@gmail.com
 Email : ksm372510@gmail.com
 ```
 
-#### 팀원 : **안 은 영**
+#### 팀원 : **안 은 영 ( Eunyoung Ahn )**
 
 <img src="./img/Ahn.jpeg" alt="Ahn" width="300" height="400"/>
 
@@ -67,7 +67,7 @@ Email : ksm372510@gmail.com
 Email : any218@kookmin.ac.kr
 ```
 
-#### 팀원 : **서 준 교**
+#### 팀원 : **서 준 교 ( Junkyo, Seo )**
 
 <img src="./img/Seo.jpeg" alt="Ahn" width="300" height="400"/>
 
@@ -77,7 +77,7 @@ Email : any218@kookmin.ac.kr
 Email : jkseo50@naver.com
 ```
 
-#### 팀원 : **이 옥 걸**
+#### 팀원 : **이 옥 걸 ( Yujie Lee )**
 
 <img src="./img/Lee.jpeg" alt="Lee" width="300" height="400"/>
 
@@ -91,11 +91,11 @@ Email : li994885943@gmail.com
 
 ### 4. 사용법
 
-* 제작한 하드웨어 디바이스인 스마트 글라스를 장착한다.
+제작한 하드웨어 디바이스인 스마트 글라스를 장착한다.
 
-* 카메라가 객체를 인식하도록 장애물에 접근한다.
+* 사물 인식 기능 - 카메라가 객체를 인식하도록 장애물에 접근한다.
 
-* 글자를 읽고 싶다면 글자가 있는 곳에 특정 모션을 취한다.
+* 모션 인식 기능 - 글자를 읽고 싶다면 글자가 있는 곳에 특정 모션을 취한다.
 
 ***
 
