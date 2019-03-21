@@ -8,11 +8,10 @@
 #include <math.h>
 #include "box.h"
 #include "darknet.h"
-
+#include "stdio.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 #ifdef OPENCV
 void *open_video_stream(const char *f, int c, int w, int h, int fps);
 image get_image_from_stream(void *p);

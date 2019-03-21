@@ -8,10 +8,12 @@
 #include "image.h"
 #include "demo.h"
 #include <sys/time.h>
+#include <stdio.h>
 
 #define DEMO 1
 
 #ifdef OPENCV
+
 
 static char **demo_names;
 static image **demo_alphabet;
@@ -129,6 +131,7 @@ void *detect_in_thread(void *ptr)
     printf("\nFPS:%.1f\n",fps);
     printf("Objects:\n\n");
     image display = buff[(buff_index+2) % 3];
+
     draw_detections(display, dets, nboxes, demo_thresh, demo_names, demo_alphabet, demo_classes);
     free_detections(dets, nboxes);
 

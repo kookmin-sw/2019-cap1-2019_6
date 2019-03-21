@@ -2,5 +2,4 @@
 #define DEMO_H
 
 #include "image.h"
-
 #endif

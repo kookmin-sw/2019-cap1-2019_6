@@ -551,7 +551,7 @@ void try_classifier(char *datacfg, char *cfgfile, char *weightfile, char *filena
         for(i = 0; i < top; ++i){
             int index = indexes[i];
             printf("%s: %f\n", names[index], predictions[index]);
-	}
+        }
         free_image(im);
         if (filename) break;
     }

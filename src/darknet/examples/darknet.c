@@ -3,7 +3,6 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
-
 extern void predict_classifier(char *datacfg, char *cfgfile, char *weightfile, char *filename, int top);
 extern void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filename, float thresh, float hier_thresh, char *outfile, int fullscreen);
 extern void run_yolo(int argc, char **argv);
@@ -21,7 +20,6 @@ extern void run_go(int argc, char **argv);
 extern void run_art(int argc, char **argv);
 extern void run_super(int argc, char **argv);
 extern void run_lsd(int argc, char **argv);
-
 void average(int argc, char *argv[])
 {
     char *cfgfile = argv[2];

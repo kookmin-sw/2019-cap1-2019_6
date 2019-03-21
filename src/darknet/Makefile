@@ -99,6 +99,7 @@ results:
 	mkdir -p results
 
 .PHONY: clean
- clean:
+
+clean:
 	rm -rf $(OBJS) $(SLIB) $(ALIB) $(EXEC) $(EXECOBJ) $(OBJDIR)/*
 

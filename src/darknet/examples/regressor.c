@@ -181,7 +181,6 @@ void demo_regressor(char *datacfg, char *cfgfile, char *weightfile, int cam_inde
         int i;
         for(i = 0; i < classes; ++i){
             printf("%s: %f\n", names[i], predictions[i]);
-	    printf("안녕하세요");
         }
 
         show_image(crop, "Regressor", 10);
