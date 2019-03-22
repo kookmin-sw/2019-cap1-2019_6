@@ -1,7 +1,7 @@
 from google.cloud import texttospeech
 from google.cloud import vision
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="BeEyes-8a3077c1a3bc.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="google-api key"
 import io
 import pygame
 
