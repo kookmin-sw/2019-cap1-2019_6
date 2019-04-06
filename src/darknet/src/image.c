@@ -1,17 +1,19 @@
-#include "demo.h"
 #include "image.h"
 #include "utils.h"
 #include "blas.h"
 #include "cuda.h"
-#include "stdio.h"
 #include <stdio.h>
 #include <math.h>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
+
 int windows = 0;
+
 float colors[6][3] = { {1,0,1}, {0,0,1},{0,1,1},{0,1,0},{1,1,0},{1,0,0} };
+
 float get_color(int c, int x, int max)
 {
     float ratio = ((float)x/max)*5;
@@ -234,23 +236,10 @@ image **load_alphabet()
     return alphabets;
 }
 
-void bollardFunc(char *result)
-{
-    FILE* fp = fopen("input.txt", "w+");
-    fprintf(fp, "There is a %s Be careful\n", result);
-    fclose(fp);
-}
-
-void fingerFunc()
-{
-    FILE* fp = fopen("input.txt","w+");
-    fprintf(fp,"%s\n","finger");
-    fclose(fp);
-}
-
 void draw_detections(image im, detection *dets, int num, float thresh, char **names, image **alphabet, int classes)
 {
     int i,j;
+
     for(i = 0; i < num; ++i){
         char labelstr[4096] = {0};
         int class = -1;
@@ -263,17 +252,7 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
                     strcat(labelstr, ", ");
                     strcat(labelstr, names[j]);
                 }
-               printf("%s: %.0f%%\n", names[j], dets[i].prob[j]*100);
-               if(strcmp(names[j],"finger")==0){
-		// printf("%s: %.0f%%\n",names[j],dets[i].prob[j]*100);
-		save_image(im, "fingershot");
-	        fingerFunc()
-	       }
-	       else if(strcmp(names[j],"bollard")==0){
-		// printf("%s: %.0f%%\n",names[j],dets[i].prob[j]*100);
-		bollard_func(names[j]);
-	       }
-		
+                printf("%s: %.0f%%\n", names[j], dets[i].prob[j]*100);
             }
         }
         if(class >= 0){
