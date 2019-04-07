@@ -48,6 +48,49 @@ def TTSfunc(currentString):
         clock.tick(30)
     pygame.mixer.quit()
 
+def detect_text(path):
+    """Detects text in the file."""
+    #from google.cloud import vision
+    client = vision.ImageAnnotatorClient()
+    
+    with io.open(path, 'rb') as image_file:
+         content = image_file.read()
+    
+    image = vision.types.Image(content=content)
+
+    response = client.text_detection(image=image)
+    texts = response.text_annotations
+    
+    stringline = ""
+    
+    for text in texts:
+        # print('\n"{}"'.format(text.description))
+        stringline = stringline + "\n" + text.description
+# break
+# vertices = (['({},{})'.format(vertex.x, vertex.y)
+#             for vertex in text.bounding_poly.vertices])
+# print('bounds: {}'.format(','.join(vertices)))
+
+    print("stringline : ", stringline)
+
+    return stringline
+
+def startFingerTTS():
+    # Instantiates a client
+    client = texttospeech.TextToSpeechClient()
+    
+    doc = detect_text('screenshot.jpg')
+    
+    fw = open('input.txt', 'w')
+    if doc == "":
+        fw.write("글자를 읽을 수 없습니다.")
+    else :
+        fw.write("글자를 모두 읽었습니다.")
+    fw.close()
+    
+# Set the text input to be synthesized
+    TTSfunc(doc)
+
 def startTTS():
     # Instantiates a client
     linetmp = "Init"
