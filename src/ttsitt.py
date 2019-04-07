@@ -1,9 +1,10 @@
 from google.cloud import texttospeech
-# from google.cloud import vision
+from google.cloud import vision
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="JSON FILE PATH"
 import io
 import pygame
+import time
 
 def TTSfunc(currentString):
     # Instantiates a client 
@@ -52,24 +53,24 @@ def detect_text(path):
     """Detects text in the file."""
     #from google.cloud import vision
     client = vision.ImageAnnotatorClient()
-    
+
     with io.open(path, 'rb') as image_file:
-         content = image_file.read()
-    
+        content = image_file.read()
+
     image = vision.types.Image(content=content)
 
     response = client.text_detection(image=image)
     texts = response.text_annotations
-    
+  
     stringline = ""
-    
+
     for text in texts:
         # print('\n"{}"'.format(text.description))
         stringline = stringline + "\n" + text.description
-# break
-# vertices = (['({},{})'.format(vertex.x, vertex.y)
-#             for vertex in text.bounding_poly.vertices])
-# print('bounds: {}'.format(','.join(vertices)))
+        # break
+        # vertices = (['({},{})'.format(vertex.x, vertex.y)
+        #             for vertex in text.bounding_poly.vertices])
+    # print('bounds: {}'.format(','.join(vertices)))
 
     print("stringline : ", stringline)
 
@@ -77,37 +78,49 @@ def detect_text(path):
 
 def startFingerTTS():
     # Instantiates a client
+    fw = open('input.txt','w')
     client = texttospeech.TextToSpeechClient()
-    
+    flag = 1
     doc = detect_text('screenshot.jpg')
     
-    fw = open('input.txt', 'w')
     if doc == "":
-        fw.write("글자를 읽을 수 없습니다.")
-    else :
-        fw.write("글자를 모두 읽었습니다.")
-    fw.close()
+        cur = "글자를 읽을 수 없습니다. "
+        flag = 0
     
-# Set the text input to be synthesized
-    TTSfunc(doc)
+    if flag == 0:
+        TTSfunc(cur)
+    else:
+        TTSfunc(doc)
+        time.sleep(1)        
+        cur = "글자를 모두 읽었습니다"
+        TTSfunc(cur)
+    
+    return
+
+def initTTS():
+    fw = open('input.txt','w')
+    fw.write("Init")
+    fw.close()
+    return    
 
 def startTTS():
-    # Instantiates a client
-    linetmp = "Init"
-    print(linetmp)
     # TTS 무한루프
+    linetmp = "Init" 
     while True :
         f = open('input.txt', 'r')
         line = f.readline()
-        while line != linetmp and line != "":
+        while linetmp!=line and line != "":
             if line == 'cell phone':
-#               startFingerTTS()
-                linetmp = "Init"
+                startFingerTTS()
+                initTTS()
                 break
+            #elif line == 'bollard' :
             else :
-                # Set the text input to be synthesized
                 TTSfunc(line)
-                linetmp = line
-
+                initTTS()
+                break
+            #else:
+            #    break
 # TTS 기능 시작 
 startTTS()
+
