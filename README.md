@@ -16,7 +16,7 @@
 
 국가 통계 포털의 통계 자료에 의하면, 2017년도 기준 대한민국에 있는 시각장애인의 수는 약 25만명으로 전체 인구 수인 약 5147만명 중 약 0.5%에 해당한다. 또한 전체 장애 인구의 약 10%를 차지한다. 수 많은 시각 장애인의 편리한 일상생활을 위해 다양한 이용 수단 및 장비가 제공되고 있지만 비싼 가격과 낮은 효율성과 사용성으로 시각장애인의 일상은 불편함의 연속이다. 여전히 보행의 불편함 또는 의약품 오남용 등 시각장애인을 위한 현실은 미비하다.
 
-<img src="./img/status.png" alt="status" height="300" />
+<img src="./img/status.png" alt="status" height="200" />
 
 ```markdown
   본 프로젝트는 시각장애인들이 안전하게 일상생활을 할 수 있도록 주변의 물체 및 텍스트를 인식하여 음성으로 전달해주는 스마트 안경을 개발하는 것을 목표로 한다. 
@@ -34,8 +34,12 @@
 
 ### 2. Abstract
 
- 'BE EYES' is a deep learning-based smart glass for people who are visually impaired. This project aims to develop smart glasses that recognize the surrounding objects and texts, and transmit them by voice so that blind people can safely live their daily lives. It has two main functions. 
- First, 'BE EYES' informs the information of the obstacle to people with visual impairment. Since the information of the obstacle is recognized, they can cope with the specific situation.(Ex: bollard, stairs, etc.) Second, it speaks the text of the area people with visual impairment indicated by the finger. So they can take safe medications and foods. (Ex: information about drug indication, food(milk, pastry bag), etc.) 
+ 'Be Eyes' is a deep learning-based smart glass for people who are visually impaired. This project aims to develop smart glasses that recognize the surrounding objects and texts, and transmit them by voice so that blind people can safely live their daily lives. It has two main functions. 
+
+ First, 'Be Eyes' informs the information of the obstacle to people with visual impairment. Since the information of the obstacle is recognized, they can cope with the specific situation.(Ex: bollard, stairs, etc.)
+
+ Second, it speaks the text of the area people with visual impairment indicated by the finger. So they can take safe medications and foods. (Ex: information about drug indication, food(milk, pastry bag), etc.) 
+
  Through these two functions, we want to help people with visual impairment in their daily life.
 
 
