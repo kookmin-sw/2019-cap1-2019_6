@@ -1,0 +1,14 @@
+482
+releases/openvino/2019R1
+00171ca935d945ec9831d67ff0ef020f078cd19a
+
+General configuration for OpenCV 4.1.0-openvino =====================================
+  Version control:               4.0.1-432-g00171ca
+
+  Platform:
+    Timestamp:                   2019-03-19T16:11:44Z
+    Host:                        Linux 4.13.0-45-generic x86_64
+    Target:                      Linux 1 arm
+    CMake:                       3.7.2
+    CMake generator:             Ninja
+    CMake build tool:            /usr/bin/ninja
