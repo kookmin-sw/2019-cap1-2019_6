@@ -1,15 +1,22 @@
 import numpy as np
 import cv2
 
-#잘라서 이미지 저장
-def im_trim(img, x, y):
-    img_trim = img[0:y, 0:x]
-    cv2.imwrite('boundary!!.jpg', img_trim)
+#잘라서 빈이미지랑 붙인 후 저장
+def im_trim(img, y):
+    zero = np.zeros((768-y, 1280, 3), np.uint8)
+    img_trim = img[0:y]
+    addv = cv2.vconcat([img_trim, zero])
+    resize = cv2.resize(addv, (1024, 768))
+    cv2.imwrite('boundary!!.jpg', resize)
+#    resize = cv2.resize(img_trim,(1024,768))
+#    cv2.imwrite('boundary!!.jpg', resize)
 
 def nothing(x):
     pass
 
-capture = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(0)
+cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1024)
+cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 768)
 
 cv2.namedWindow("hand")
 cv2.createTrackbar("hue_lower", "hand", 0, 255, nothing)  # 1) Creating trackbar for lower hue value so as to find the desired colored object in frame.
@@ -22,7 +29,7 @@ cv2.createTrackbar("value_upper", "hand", 220, 255, nothing)  # Creating trackba
 
 while (1):
 
-    ret, frame = capture.read()
+    ret, frame = cam.read()
 
     # cv2.imshow("frame",frame)
     frame_hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -60,6 +67,8 @@ while (1):
     cv2.drawContours(frame, [hull], 0, (0, 255, 0), 3)  # (")
     hull = cv2.convexHull(cnt, returnPoints=False)
     defects = cv2.convexityDefects(cnt, hull)  # Finding the defects between cnt contour and convex hull of hand.
+   # far = ()
+    end = ()
 
     for i in range(defects.shape[0]):
         s, e, f, d = defects[i, 0]
@@ -70,15 +79,16 @@ while (1):
             cv2.circle(frame, end, 5, [0, 0, 255], -1)  # draw a circle at the defect point.
 
     font = cv2.FONT_HERSHEY_COMPLEX
-    cv2.putText(frame, str(far), (100, 100), font, 1, (0, 0, 255), 1)
+    cv2.putText(frame, str(end), (100, 100), font, 1, (0, 0, 255), 1)
 
-    im_trim(frame,far[0],far[1])
+    if len(end) > 0 :
+        im_trim(frame, end[1])
 
-    # out.write(frame)  # To save the video
+    #out.write(frame)  # To save the video
+    #cv2.namedWindow('frame', cv2.WINDOW_AUTOSIZE)
     cv2.imshow('frame', frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    if cv2.waitKey(1) & 0xFF == ord('q'): break
 
-capture.release()
+cam.release()
 #out.release()
 cv2.destroyAllWindows()
