@@ -7,7 +7,7 @@ def im_trim(img, y):
     img_trim = img[0:y]
     addv = cv2.vconcat([img_trim, zero])
     resize = cv2.resize(addv, (1024, 768))
-    cv2.imwrite('boundary!!.jpg', resize)
+    cv2.imwrite('img_to_read.jpg', resize)
 #    resize = cv2.resize(img_trim,(1024,768))
 #    cv2.imwrite('boundary!!.jpg', resize)
 
@@ -48,7 +48,7 @@ while (1):
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)  # Performing the Close operation (Decreasing the white portion)
     mask = cv2.bilateralFilter(mask, 5, 75, 75)  # Applying bilateral filter to further remove noises in image and keeping the boundary of hands sharp.
     #cv2.imshow("image2",mask)
-    _, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)  # finding the approximate contours of all closed objects in image
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)  # finding the approximate contours of all closed objects in image
     drawing = np.zeros(frame.shape, np.uint8)
     max = 0
     ci = 0
@@ -59,12 +59,17 @@ while (1):
             max = area
             ci = i
 
+    if len(contours) == 0:
+        continue
     cnt = contours[ci]  # cnt is the largest contour
     epsilon = 0.5 * cv2.arcLength(cnt, True)  # Further trying to better approximate the contour by making edges sharper and using lesser number of points to approximate contour cnt.
     approx = cv2.approxPolyDP(cnt, epsilon, True)
     hull = cv2.convexHull(cnt, returnPoints=True)  # Finding the convex hull of largest contour
-    cv2.drawContours(frame, [cnt], 0, (255, 0, 0), 3)  # storing the hull points and contours in "frame" image variable(matrix).
-    cv2.drawContours(frame, [hull], 0, (0, 255, 0), 3)  # (")
+    #cv2.drawContours(frame, [cnt], 0, (255, 0, 0), 3)  # storing the hull points and contours in "frame" image variable(matrix).
+    x, y, w, h = cv2.boundingRect(cnt)
+    cv2.rectangle(frame, (x, y), (x + w, h + y), (255, 0, 0), 2)
+    #cv2.drawContours(frame, [hull], 0, (0, 255, 0), 3)  # (")
+    im_trim(frame, y)
     hull = cv2.convexHull(cnt, returnPoints=False)
     defects = cv2.convexityDefects(cnt, hull)  # Finding the defects between cnt contour and convex hull of hand.
    # far = ()
@@ -76,13 +81,13 @@ while (1):
             start = tuple(cnt[s][0])
             end = tuple(cnt[e][0])
             far = tuple(cnt[f][0])
-            cv2.circle(frame, end, 5, [0, 0, 255], -1)  # draw a circle at the defect point.
+            #cv2.circle(frame, end, 5, [0, 0, 255], -1)  # draw a circle at the defect point.
 
     font = cv2.FONT_HERSHEY_COMPLEX
     cv2.putText(frame, str(end), (100, 100), font, 1, (0, 0, 255), 1)
 
-    if len(end) > 0 :
-        im_trim(frame, end[1])
+    #if len(end) > 0 :
+    #    im_trim(frame, end[1])
 
     #out.write(frame)  # To save the video
     #cv2.namedWindow('frame', cv2.WINDOW_AUTOSIZE)
