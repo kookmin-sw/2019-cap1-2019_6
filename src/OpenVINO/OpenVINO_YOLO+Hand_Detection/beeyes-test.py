@@ -119,10 +119,17 @@ def outputFunc(detectDic):
         return
     data = ""
     for key, val in detectDic.items():
-        if key == "finger":
+        if key == "extinguisher":
+            key = "소화기"
+        elif key == "bollard":
+            key = "안전꼬깔"
+        elif key == "finger":
             return
-        data += key + " " + str(val) + "개 "
-    #result = ("전방에 %s있습니다. 조심하세요." % data)
+        
+        if key == "stair":
+            data += "계단 "
+        else:
+            data += key + " " + str(val) + "개 "
     result = ("전방에 %s있습니다. 조심하세요." % data)
     fp.write(result) 
     fp.close()
@@ -134,7 +141,7 @@ def fingerFunc():
 
 #잘라서 빈이미지랑 붙인 후 저장
 def im_trim(img, y):
-    zero = np.zeros((240-y, 320, 3), np.uint8)
+    zero = np.zeros((240-y, 320, 3), np.uint8) # height , width
     img_trim = img[0:y]
     addv = cv2.vconcat([img_trim, zero])
     resize = cv2.resize(addv, (1024, 768))
@@ -151,8 +158,9 @@ def camThread(LABELS, results, frameBuffer, camera_width, camera_height, vidfps)
     global time2
     global cam
     global window_name
-
     cam = cv2.VideoCapture(0)
+    fourcc = cv2.VideoWriter_fourcc(*'DIVX')
+    out = cv2.VideoWriter('video.avi', fourcc, 25.0, (320, 240))
     
     if cam.isOpened() != True:
         print("USB Camera Open Error!!!")
@@ -160,22 +168,11 @@ def camThread(LABELS, results, frameBuffer, camera_width, camera_height, vidfps)
     cam.set(cv2.CAP_PROP_FPS, vidfps)
     cam.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
     cam.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
-    # cam.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
-    # cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
     window_name = "USB Camera"
     wait_key_time = 1
 
-    #cam = cv2.VideoCapture("data/input/testvideo4.mp4")
-    #camera_width = int(cam.get(cv2.CAP_PROP_FRAME_WIDTH))
-    #camera_height = int(cam.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    #frame_count = int(cam.get(cv2.CAP_PROP_FRAME_COUNT))
-    #window_name = "Movie File"
-    #wait_key_time = int(1000 / vidfps)
-
     cv2.namedWindow(window_name, cv2.WINDOW_AUTOSIZE)
-
-    #손 인식 캐스케이드 파일 읽는다
-    hand_cascade = cv2.CascadeClassifier('hand.xml')
+    hand_cascade = cv2.CascadeClassifier('/home/pi/Downloads/OpenVINO-YoloV3/hand_detection.xml')
 
     while True:
         t1 = time.perf_counter()
@@ -185,9 +182,6 @@ def camThread(LABELS, results, frameBuffer, camera_width, camera_height, vidfps)
         
         gray = cv2.cvtColor(color_image, cv2.COLOR_BGR2GRAY)
         hands = hand_cascade.detectMultiScale(gray, 1.3, 5)
-
-        #인식된 손 갯수를 출력
-        # print(len(hands))
 
         # 인식된 손에 사각형을 출력한다
         if len(hands) != 0 :
@@ -217,15 +211,14 @@ def camThread(LABELS, results, frameBuffer, camera_width, camera_height, vidfps)
                 if obj.confidence < 0.2:
                     continue
                 label = obj.class_id
+                if LABELS[label] == "finger":
+                    continue
                 confidence = obj.confidence
                 if confidence > 0.2:
                     label_text = LABELS[label] + " (" + "{:.1f}".format(confidence * 100) + "%)"
                     cv2.rectangle(color_image, (obj.xmin, obj.ymin), (obj.xmax, obj.ymax), box_color, box_thickness)
                     cv2.putText(color_image, label_text, (obj.xmin, obj.ymin - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, label_text_color, 1)
-                # if LABELS[label] == "laptop":
-                #    fingerFunc()
-                #    #rgb = cv2.cvtColor(color_image, cv2.COLOR_BGR2BGRA)
-                #    out = cv2.imwrite('screenshot.jpg', color_image)
+
                 detectList.insert(count, LABELS[label])
                 count += 1
             for lst in detectList:
@@ -233,7 +226,6 @@ def camThread(LABELS, results, frameBuffer, camera_width, camera_height, vidfps)
                     detectDic[lst] += 1
                 except:
                     detectDic[lst] = 1
-            #print(detectDic, "\n")
             outputFunc(detectDic)
             lastresults = objects
         else:
@@ -245,6 +237,8 @@ def camThread(LABELS, results, frameBuffer, camera_width, camera_height, vidfps)
                     if obj.confidence < 0.2:
                         continue
                     label = obj.class_id
+                    if LABELS[label] == "finger":
+                        continue
                     confidence = obj.confidence
                     if confidence > 0.2:
                         label_text = LABELS[label] + " (" + "{:.1f}".format(confidence * 100) + "%)"
@@ -252,23 +246,24 @@ def camThread(LABELS, results, frameBuffer, camera_width, camera_height, vidfps)
                         cv2.putText(color_image, label_text, (obj.xmin, obj.ymin - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, label_text_color, 1)
                     detectList.insert(count, LABELS[label])
                     count += 1
-                    #if LABELS[label] == "laptop":
-                    #    fingerFunc()
-                    #    #rgb = cv2.cvtColor(color_image, cv2.COLOR_BGR2BGRA)
+
                 for lst in detectList:
                     try: 
                         detectDic[lst] += 1
                     except:
                         detectDic[lst] = 1
-                #print(detectDic, "\n")
-                #outputFunc(detectDic)
+ 
         cv2.putText(color_image, fps,       (width-170,15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (38,0,255), 1, cv2.LINE_AA)
         cv2.putText(color_image, detectfps, (width-170,30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (38,0,255), 1, cv2.LINE_AA)
         cv2.imshow(window_name, cv2.resize(color_image, (width, height)))
-
+        
+        
+        out.write(color_image)  # To save the video
+            
         if cv2.waitKey(wait_key_time)&0xFF == ord('q'):
             sys.exit(0)
-
+        out.release()
+        
         ## Print FPS
         framecount += 1
         if framecount >= 15:
@@ -306,8 +301,8 @@ class NcsWorker(object):
     def __init__(self, devid, frameBuffer, results, camera_width, camera_height, number_of_ncs, vidfps):
         self.devid = devid
         self.frameBuffer = frameBuffer
-        self.model_xml = "/home/pi/Downloads/class4-20000-train-model/frozen_darknet_yolov3_model.xml"
-        self.model_bin = "/home/pi/Downloads/class4-20000-train-model/frozen_darknet_yolov3_model.bin"
+        self.model_xml = "/home/pi/Downloads/class4-90000-train-model/frozen_darknet_yolov3_model.xml"
+        self.model_bin = "/home/pi/Downloads/class4-90000-train-model/frozen_darknet_yolov3_model.bin"
         self.camera_width = camera_width
         self.camera_height = camera_height
         self.m_input_size = 416
