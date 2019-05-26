@@ -95,10 +95,16 @@ cd darknet
 make
 ```
 ### convolutional layer 설치
-학습을 위한 darknet YOLO의 설치는 모두 마무리되었다. 이제, darknet 디렉토리 안에 convolutional layer를 설치한다.
+학습을 위한 darknet YOLO의 설치는 모두 마무리되었다. 이제, darknet 디렉토리 안에 tiny yolo v3의 convolutional layer를 설치한다.
 ```markdown
-http://pjreddie.com/media/files/darknet19_448.conv.23
+https://pjreddie.com/media/files/yolov3-tiny.weights
 ```
+그 뒤, 다음 명령어를 실행하여 weight를 추출한다.
+```markdown
+./darknet partial cfg/yolov3-tiny.cfg yolov3-tiny.weights yolov3-tiny.conv.15 15
+```
+이 명령어를 통하여, 학습에 필요한 yolov3-tiny.conv.15 파일을 얻을 수 있다.
+
 ### 파일 경로 이동
 yolo-obj.cfg 파일도 darknet 디렉토리로 이동시키고, yolo_mark/x64/Release/data 경로 안에 있는 image 디렉토리와 obj.names, obj.data, train.txt를 darknet/data 경로로 이동시켜준다. 여기서 주의할 점은, train.txt에 있는 파일 경로의 x64/Release 부분을 지워준다.
 ```markdown
@@ -109,9 +115,9 @@ ex) x64/Release/data/img/stair001.JPG => data/img/stair001.JPG
 경로 설정이 모두 완료되었으니 이제 데이터 학습을 진행한다.
 다음 명령어를 darknet 디렉토리에서 실행하면 학습이 진행된다.
 ```markdown
-cd darknet./darknet detector train data/obj.data yolo-obj.cfg darknet19_448.conv.23
+./darknet detector train data/obj.data cfg/yolov3-tiny.cfg yolov3-tiny.conv.15
 ```
-yolo-obj.cfg와 darknet19_448.conv.23은 사용자가 선택한 YOLO 모델에 따라서 얼마든지 다른 파일로 대체할 수 있다.
+만약 tiny yolo v3 모델이 아닌 다른 모델을 이용하여 학습하고 싶다면 yolov3-tiny.cfg 와 yolov3-tiny.conv.15을 다른 모델로 대체할 수 있다.
 <학습 실행 사진>
 학습이 진행되면, 학습 횟수, 손실 함수 값, 학습률, 걸린 시간, 학습된 총 이미지 파일의 수가 terminal에 로그로 기록되는 것을 확인할 수 있다.
 또, 학습이 진행되면 100, 200, ..., 900 단위로 weights 파일이 생성되며, 그 뒤로는 10000번 학습할 때마다 weights 파일이 기록된다.
