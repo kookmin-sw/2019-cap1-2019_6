@@ -68,7 +68,7 @@ ex) x64/Release/data/img/stair001.JPG
 라벨링을 하면, jpg 파일 옆에 txt 파일이 생성된다. 해당 txt 파일에는 object id와 bounding box의 중심 좌표값과 너비, 높이가 기록된다.
 <좌표 찍힌사진>
 
-## 3. 데이터 학습 진행
+## 3. 데이터 학습
 
 데이터 학습 진행을 위해, yolo_mark/x64/Release 경로로 이동한다.
 그리고, yolo-obj.cfg 파일을 수정한다.
