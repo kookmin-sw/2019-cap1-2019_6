@@ -1,7 +1,7 @@
 from google.cloud import texttospeech
 from google.cloud import vision
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="BeEyes-key_number.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/Downloads/OpenVINO-YoloV3/BeEyes-d3b97497325e.json"
 import io
 import pygame
 import time
@@ -9,28 +9,23 @@ import time
 def TTSfunc(currentString):
     # Instantiates a client 
     client = texttospeech.TextToSpeechClient()
-
     synthesis_input = texttospeech.types.SynthesisInput(text=currentString)
-    # Build the voice request, select the language code ("en-US") and the ssml
-    # voice gender ("neutral")
 
     voice = texttospeech.types.VoiceSelectionParams(
         language_code='ko-KR',
         ssml_gender=texttospeech.enums.SsmlVoiceGender.NEUTRAL)
 
-    # Select the type of audio file you want returned
     audio_config = texttospeech.types.AudioConfig(
         audio_encoding=texttospeech.enums.AudioEncoding.MP3)
+
     # Perform the text-to-speech request on the text input with the selected
     # voice parameters and audio file type
     response = client.synthesize_speech(synthesis_input, voice, audio_config)
 
     # The response's audio_content is binary.
     with open('output.mp3', 'wb') as out:
-        # Write the response to the output file.
         out.write(response.audio_content)
-        # print('Audio content written to file "output.mp3"')
-
+ 
     # mp3 파일 바로 재생시키는 pygame 코드 
     mp3_file = 'output.mp3'
 
@@ -60,50 +55,40 @@ def detect_text(path):
 
     response = client.text_detection(image=image)
     texts = response.text_annotations
-
+  
     stringline = ""
-
+    
     for text in texts:
-        # print('\n"{}"'.format(text.description))
         stringline = stringline + "\n" + text.description
-        # break
-        # vertices = (['({},{})'.format(vertex.x, vertex.y)
-        #             for vertex in text.bounding_poly.vertices])
-    # print('bounds: {}'.format(','.join(vertices)))
 
     print("stringline : ", stringline)
 
-    return stringline 
+    return stringline
 
 def startFingerTTS():
     # Instantiates a client
     fw = open('input.txt','w')
     client = texttospeech.TextToSpeechClient()
-    flag = 1
     doc = detect_text('screenshot.jpg')
-
+    
     if doc == "":
         doc = "글자를 읽을 수 없습니다. "
-        flag = 0
-
-    if flag == 0:
         TTSfunc(doc)
     else:
         TTSfunc(doc)
         time.sleep(1)        
         cur = "글자를 모두 읽었습니다"
         TTSfunc(cur)
-
+    
     return
 
 def initTTS():
     fw = open('input.txt','w')
     fw.write("Init")
-    #fw.fclose()
-    return    
+ 
 
 def startTTS():
-    # TTS 무한루프
+    
     linetmp = "Init"
     TTSfunc("비아이즈 실행합니다.")
     while True :
@@ -112,15 +97,14 @@ def startTTS():
         while linetmp != line and line != "":
             if line == "init":
                 break
-            #if line == 'laptop':
-            #    startFingerTTS()
-            #    initTTS()
-            #    break
-            #if line == '전방에 볼라드 있습니다. 조심하세요.':
-            TTSfunc(line)
-            print(line)
-            initTTS()
-            break
-
+            if line == 'finger':
+                startFingerTTS()
+                initTTS()
+                break
+            else:
+                print(line)
+                TTSfunc(line)
+                initTTS()
+                break
 # TTS 기능 시작 
 startTTS()
