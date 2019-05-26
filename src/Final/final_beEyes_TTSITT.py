@@ -1,7 +1,7 @@
 from google.cloud import texttospeech
 from google.cloud import vision
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/Downloads/OpenVINO-YoloV3/BeEyes-d3b97497325e.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="BeEyes-key_number.json"
 import io
 import pygame
 import time
