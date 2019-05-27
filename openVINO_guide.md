@@ -34,32 +34,33 @@ Model Optimizer 작업은 Darknet 모델을 Tensorflow 모델로 변환한 다�
 
 1. .weight 파일 -> .pb 파일 변환
 
-    아래 주소를 Git Clone 한다.
+아래 주소를 clone하여 로컬에 다운받는다.
 ```markdown
 git clone https://github.com/mystic123/tensorflow-yolo-v3
 ```
 
-    coco.names 파일에 학습시킨 클래스의 이름을 적어준다.
+학습시킨 클래스의 coco.names 파일에 이름을 적어준다.
 ```markdown
 extinguisher
 bollard
 stair
 ```
 
+names파일과 weights파일의 경로를 아래와 같이 {} 안에 넣고 convert_weights_pb.py 파일을 실행한다.
 ```markdown
 python3 convert_weights_pb.py --class_names {coco.names} --data_format NHWC --weights_file {yolov3-tiny.weights} --tiny
 ```
 
-3. .pb 파일 -> .xml, .bin, .mapping 파일 변환
+2. .pb 파일 -> .xml, .bin, .mapping 파일 변환
 
-    Tiny-Yolo v3를 사용하기 때문에 <OPENVINO_INSTALL_DIR>/deployment_tools/model_optimizer/extensions/front/tf/ 경로에서 yolo_v3_tiny.json을 만들고 class의 갯수를 적절히 수정해준다.
+Tiny-Yolo v3를 사용하기 때문에 <OPENVINO_INSTALL_DIR>/deployment_tools/model_optimizer/extensions/front/tf/ 경로에서 yolo_v3_tiny.json을 만들고 class의 갯수를 적절히 수정해준다.
 ```markdown
 [
   {
     "id": "TFYOLOV3",
     "match_kind": "general",
     "custom_attributes": {
-      "classes": 80,
+      "classes": 4,
       "coords": 4,
       "num": 6,
       "mask": [0,1,2],
@@ -69,15 +70,17 @@ python3 convert_weights_pb.py --class_names {coco.names} --data_format NHWC --we
 ]
 ```
 
+<OPENVINO_INSTALL_DIR>/deployment_tools/model_optimizer/ 경로에서 1번 과정을 통해 만든 pb 파일의 경로를 아래와 같이 {} 안에 넣고 mo_tf.py 파일을 실행한다. 
 ```markdown
 python mo_tf.py --input_model {frozen_darknet_yolov3_model.pb} --tensorflow_use_custom_operations_config {yolo_v3_tiny.json} --data_type=FP16 --input_shape=[1,416,416,3] 
 ```
-    또는
+또는
 ```markdown
 python mo_tf.py --input_model {frozen_darknet_yolov3_model.pb} --tensorflow_use_custom_operations_config {yolo_v3_tiny.json} --data_type=FP16 --batch 1
 ```
 
-    이 작업을 정상적으로 수행하게 되면 .xml, .bin, .mapping 총 3개의 파일이 만들어진다. 
+이 작업을 정상적으로 수행하게 되면 .xml, .bin, .mapping 총 3개의 파일이 만들어진다. 
+
 참고 : 
 - [OpenVINO-ModelOptimizer](https://software.intel.com/en-us/articles/OpenVINO-ModelOptimizer)
 - [OpenVINO-Using-TensorFlow](https://software.intel.com/en-us/articles/OpenVINO-Using-TensorFlow)
@@ -86,7 +89,35 @@ python mo_tf.py --input_model {frozen_darknet_yolov3_model.pb} --tensorflow_use_
 
 ## 4. OpenVINO에서 제공하는 YOLO 알고리즘 적용
 
-    아래 주소를 Git Clone 한다.
+Raspberry Pi 를 실행하여 아래 주소를 clone하여 다운받는다.
 ```markdown
 git clone https://github.com/PINTO0309/OpenVINO-YoloV3
 ```
+
+openvino_tiny-yolov3_MultiStick_test.py 파일을 열어서 우리가 학습시킨 모델에 맞춰서 코드를 수정한다.
+```markdown
+classes = 4
+coords = 4
+num = 3
+anchors = [10,14, 23,27, 37,58, 81,82, 135,169, 344,319]
+
+LABELS = ("extinguister", "bollard", "stair", "finger")
+```
+
+3번 과정을 통해 만든 xml, bin 파일의 경로를 아래와 같이 넣어준다. (xml, bin, mapping 총 3개의 파일은 같은 경로에 있어야한다.)
+```markdown
+class NcsWorker(object):
+
+    def __init__(self, devid, frameBuffer, results, camera_width, camera_height, number_of_ncs, vidfps):
+      ...
+        self.model_xml = "/home/pi/Downloads/OpenVINO-YoloV3/frozen_tiny_yolo_v3.xml"
+        self.model_bin = "/home/pi/Downloads/OpenVINO-YoloV3/frozen_tiny_yolo_v3.bin"
+      ...
+```
+
+라즈베리파이에 NCS2 USB를 연결하고 그 갯수만큼 옵션에 넣어서 openvino_tiny-yolov3_MultiStick_test.py 파일을 실행한다.
+```markdown
+python3 openvino_tiny-yolov3_MultiStick_test.py -numncs 2 
+(2개를 연결했을 경우이다. Default는 1이므로 1개를 연결했을 때는 옵션 없이 실행해도 된다.)
+```
+
