@@ -64,6 +64,7 @@ ex) x64/Release/data/img/stair001.JPG
 ./linux_mark.sh
 ```
 이제부터 bounding box를 직접 마우스로 그려넣어 라벨링을 진행한다.
+
 <img src="./img/labeling.png" alt="labeling" width="500" height="350" />
 
 라벨링을 하면, jpg 파일 옆에 txt 파일이 생성된다.
