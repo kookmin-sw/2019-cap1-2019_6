@@ -75,9 +75,9 @@ ex) x64/Release/data/img/stair001.JPG
 ## 3. 데이터 학습
 
 데이터 학습 진행을 위해, yolo_mark/x64/Release 경로로 이동한다.
-그리고, yolo-obj.cfg 파일을 수정한다.
+그리고, yolov3-tiny.cfg 파일을 수정한다.
 ```markdown
-vi yolo-obj.cfg
+vi yolov3-tiny.cfg
 ```
 cfg 파일은 yolo의 신경망 모델의 구조와 hyper parameter를 담고 있다. 해당 파일에서, 학습시키고자 하는 object의 종류에 따라 filter수가 달라지므로, object 종류에 맞게 filter를 변경해주어야 이상없이 학습이 진행된다. 해당 폴더에서 값을 변경해야 할 변수는 classes와 filter이다.
 
