@@ -64,19 +64,29 @@ ex) x64/Release/data/img/stair001.JPG
 ./linux_mark.sh
 ```
 이제부터 bounding box를 직접 마우스로 그려넣어 라벨링을 진행한다.
-<라벨링 사진>
-라벨링을 하면, jpg 파일 옆에 txt 파일이 생성된다. 해당 txt 파일에는 object id와 bounding box의 중심 좌표값과 너비, 높이가 기록된다.
-<좌표 찍힌사진>
+
+<img src="./img/labeling.png" alt="labeling" width="500" height="350" />
+
+라벨링을 하면, jpg 파일 옆에 txt 파일이 생성된다.
+
+![coord](./img/coord.png)
+
+해당 txt 파일에는 object id와 bounding box의 중심 좌표값과 너비, 높이가 기록된다.
 
 ## 3. 데이터 학습
 
 데이터 학습 진행을 위해, yolo_mark/x64/Release 경로로 이동한다.
-그리고, yolo-obj.cfg 파일을 수정한다.
+그리고, yolov3-tiny.cfg 파일을 수정한다.
 ```markdown
-vi yolo-obj.cfg
+vi yolov3-tiny.cfg
 ```
 cfg 파일은 yolo의 신경망 모델의 구조와 hyper parameter를 담고 있다. 해당 파일에서, 학습시키고자 하는 object의 종류에 따라 filter수가 달라지므로, object 종류에 맞게 filter를 변경해주어야 이상없이 학습이 진행된다. 해당 폴더에서 값을 변경해야 할 변수는 classes와 filter이다.
-<cfg사진 (변경해야 하는 부분)>
+
+![cfg127](./img/cfg127.png)![cfg135](./img/cfg135.png)![cfg171](./img/cfg171.png)![cfg177](./img/cfg177.png)
+
+해당 cfg 파일의 127행, 135행, 171행, 177행의 값을 맞게 변경해주어야 한다.
+classes에는 분류할 object의 종류의 수를 입력하고, filter에는 (classes + coords + 1) * num의 값을 입력해야 한다.
+본 프로젝트에서는 4개의 class를 학습시킬 때 filter를 27로 설정하였다. (classes = 4, coords = 4, num = 3)
 ### Darknet YOLO 설치 및 setting
 이제, yolo를 설치하여 본격적으로 학습을 진행한다. 먼저, yolo를 설치하기 전에 OpenCV를 먼저 설치해야 한다. 이 가이드에서는 OpenCV 설치에 관한 내용은 생략한다. (본 프로젝트에서는 OpenCV 3.2 버전을 설치하였다.)
 먼저, 해당 명령어를 통해 Darknet YOLO를 다운받는다.
@@ -87,7 +97,8 @@ git clone https://github.com/pjreddie/darknet
 ```markdown
 vi Makefile
 ```
-<CUDA vi 사진>
+![GPUsetting](./img/GPUsetting.png)
+
 GPU를 통한 데이터 학습을 위해 GPU=1, 웹캠 및 yolo mark 실행을 위해 OPENCV=1로 각각 변경한다.
 수정된 값을 저장하고, make를 한다.
 ```markdown
@@ -118,8 +129,13 @@ ex) x64/Release/data/img/stair001.JPG => data/img/stair001.JPG
 ./darknet detector train data/obj.data cfg/yolov3-tiny.cfg yolov3-tiny.conv.15
 ```
 만약 tiny yolo v3 모델이 아닌 다른 모델을 이용하여 학습하고 싶다면 yolov3-tiny.cfg 와 yolov3-tiny.conv.15을 다른 모델로 대체할 수 있다.
-<학습 실행 사진>
+
+![data_train](./img/data_train.png)
+
 학습이 진행되면, 학습 횟수, 손실 함수 값, 학습률, 걸린 시간, 학습된 총 이미지 파일의 수가 terminal에 로그로 기록되는 것을 확인할 수 있다.
 또, 학습이 진행되면 100, 200, ..., 900 단위로 weights 파일이 생성되며, 그 뒤로는 10000번 학습할 때마다 weights 파일이 기록된다.
+
+![weights](./img/weights.png)
+
 중간에 학습을 중단하더라도 해당 weights 파일을 통해 해당 지점부터 다시 학습을 진행할 수 있다. (darknet/backup 경로에 weights 파일이 기록된다.)
 학습을 진행함에 있어서 가장 중요한 것은 overfitting이 일어나기 전까지 학습을 시키는 것인데, 손실 함수값의 증감을 통해 overfitting 여부를 확인할 수 있다. 손실 함수값이 최저가 되었을 때의 weights 파일을 사용하는 것이 가장 좋은 인식률을 보인다.
