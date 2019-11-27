@@ -90,7 +90,7 @@ Email : any218@kookmin.ac.kr
 ```markdown
 학번 : 20143068
 역할 : Text Reading하기 위한 모션 인식 설정, TTS 기능 구현
-Email : jkseo50@naver.com
+Email : jkseo50@gmail.com
 ```
 
 #### 팀원 : **이 옥 걸 ( Yujie Lee )**
